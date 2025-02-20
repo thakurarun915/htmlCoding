@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eye Icon Toggle</title>
+  <style>
+    .input-container {
+      position: relative;
+      width: 250px;
+    }
+    /* input {
+      width: 0%;
+      padding: 10px;
+    } */
+    .eye-icon {
+      position: absolute;
+      right: -2px;  /* Move the eye icon outside the input field */
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      /* visibility: hidden;  Initially hidden */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="input-container">
+    <input type="password" id="password" placeholder="Enter your password" oninput="toggleEyeIcon()">
+    <i class="eye-icon" id="toggle-password" onclick="togglePasswordVisibility()">👁️</i>
+  </div>
+
+  <!-- JavaScript at the bottom to ensure it loads after the HTML -->
+  <script>
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById("password");
+      const eyeIcon = document.getElementById("toggle-password");
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.textContent = "👁️";  // Switch to closed eye emoji
+      } else {
+        passwordInput.type = "password";
+        eyeIcon.textContent = "👁️";  // Switch to open eye emoji
+      }
+    }
+
+    // Show the eye icon when user starts typing
+    function toggleEyeIcon() {
+      const passwordInput = document.getElementById("password");
+      const eyeIcon = document.getElementById("toggle-password");
+
+      if (passwordInput.value.length > 0) {
+        eyeIcon.style.visibility = 'visible';  // Show eye icon when text is entered
+      }
+       else {
+        eyeIcon.style.visibility = 'hidden';  // Hide eye icon when no text is entered
+      }
+    }
+  </script>
+
+</body>
+</html>
